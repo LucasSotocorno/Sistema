@@ -65,6 +65,14 @@ export default function FormCadProduto(props) {
                     </Card>
                 </Col>
             </Row>
+            <Row className='mt-2 mb-2'>
+                <Col md={1}>
+                    <Button>Confirmar</Button>
+                </Col>
+                <Col md={{offset:1}}>
+                    <Button onClick={()=>{props.serExibirTabela(true);}}>Voltar</Button>
+                </Col>
+            </Row>
         </Container>
     );
 }

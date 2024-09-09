@@ -4,7 +4,6 @@ export default function TelaCadFornecedor(props){
     return(
         <div>
             <Pagina>
-                
                 <FormCadFornecedor/>
             </Pagina>
         </div>

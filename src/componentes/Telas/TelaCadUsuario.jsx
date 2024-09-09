@@ -4,7 +4,6 @@ export default function TelaCadastroUsuario(props){
     return(
         <div>
             <Pagina>
-                
                 <FormCadUsuario/>
             </Pagina>
         </div>
