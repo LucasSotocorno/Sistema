@@ -7,5 +7,14 @@ export const produtos = [
         "qtdEstoque":100,
         "imagem":"",
         "dataValidade":"31/10/2030"
+    },
+    {
+        "codigo":2,
+        "descricao":"Blusa",
+        "precoDeCusto":10.00,
+        "precoDeVenda":20.00,
+        "qtdEstoque":120,
+        "imagem":"",
+        "dataValidade":"31/10/2030"
     }
 ]
