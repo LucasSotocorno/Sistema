@@ -1,11 +1,20 @@
 import { Button, Container, Table } from "react-bootstrap";
+
 export default function TabelaProdutos(props) {
     function execluirProduto(produto){
         if(window.confirm("Deseja realmente excluir o produto" + produto.descricao)){
-            props.listaDeProdutos = props.listaDeProdutos.filter((item)=>{
-                                                                             return item.codigo != produto.codigo
-                                                                        });
+            props.setListaProdutos(props.listaDeProdutos.filter(
+                (item)=>{
+                    return item.codigo !== produto.codigo
+                }
+            ));
         }
+    }
+
+    function editarProduto(produto){
+        props.setProdutoSelecionado(produto);
+        props.setModoEdicao(true);
+        props.setExibirTabela(false);
     }
 
     return (
@@ -31,7 +40,7 @@ export default function TabelaProdutos(props) {
                     </thead>
                     <tbody>
                         {
-                            props.listaDeProdutos.map((produto) => {
+                            props.listaDeProdutos?.map((produto) => {
                                 return (
                                     <tr>
                                         <td>{produto.codigo}</td>
