@@ -15,15 +15,6 @@ export default function TabelaFornecedores(props) {
                 (item)=>{
                             return item.codigo !== fornecedor.codigo     
                         }));
-
-            //abordagem elementar            
-            /*let novaLista= []
-            for (let i=0; i < props.listaDeFornecedores.length; i++){
-                if (props.listaDeFornecedores[i].codigo != fornecedor.codigo){
-                    novaLista.push(props.listaDeFornecedores[i])
-                }
-            }
-            props.setListaDeFornecedores(novaLista);*/
         }
     }
 

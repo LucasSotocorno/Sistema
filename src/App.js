@@ -8,35 +8,57 @@ import TelaCadEntregador from "./componentes/Telas/TelaCadEntregador.jsx";
 import TelaMenu from "./componentes/Telas/TelaMenu.jsx";
 import Tela404 from "./componentes/Telas/Tela404.jsx";
 import { BrowserRouter,Route, Routes} from "react-router-dom";
+import TelaLogin from "./componentes/Telas/TelaLogin.jsx";
+import { createContext, useState } from "react";
+
+const ContextoUsuario = createContext();
 
 function App() {
-  return (
+  const [usuario,setUsuario] = useState({
+    "usuario":"",
+    "logado":false
+  });
+
+  if(!usuario.logado){
+    return(
+      <ContextoUsuario.Provider value={{usuario,setUsuario}}>
+        <TelaLogin/>
+      </ContextoUsuario.Provider>
+      
+    );
+  }
+  else{
+    return (
     <div className="App">
-    <BrowserRouter>
-      {
-        //A ordem das rotas é importante
-      }
-      <Routes>
+    <ContextoUsuario.Provider value={{usuario,setUsuario}}>
+      <BrowserRouter>
+        {
+          //A ordem das rotas é importante
+        }
+        <Routes>
 
-        <Route path="/categoria" element={<TelaCadCategoria/>}/>
-        <Route path="/cliente" element={<TelaCadCliente/>}/>
-        <Route path="/Fornecedor" element={<TelaCadFornecedor/>}/>
-        <Route path="/produto" element={<TelaCadProduto/>}/>
-        <Route path="/usuario" element={<TelaCadUsuario/>}/>
-        <Route path="/entregador" element={<TelaCadEntregador/>}/>
-  
-        <Route path="/" element={<TelaMenu/>}/>
+          <Route path="/categoria" element={<TelaCadCategoria/>}/>
+          <Route path="/cliente" element={<TelaCadCliente/>}/>
+          <Route path="/Fornecedor" element={<TelaCadFornecedor/>}/>
+          <Route path="/produto" element={<TelaCadProduto/>}/>
+          <Route path="/usuario" element={<TelaCadUsuario/>}/>
+          <Route path="/entregador" element={<TelaCadEntregador/>}/>
+          <Route path="/login" element={<TelaLogin/>}/>
+          <Route path="/" element={<TelaMenu/>}/>
 
-        <Route path="*" element={<Tela404/>}/>
-      </Routes>
-      
+          <Route path="*" element={<Tela404/>}/>
+        </Routes>
+        
 
 
-    </BrowserRouter>
-      
+      </BrowserRouter>
+    </ContextoUsuario.Provider> 
       
     </div>
   );
 }
+    
+  }
+  
 
 export default App;

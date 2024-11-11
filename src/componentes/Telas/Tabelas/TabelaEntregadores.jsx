@@ -1,4 +1,5 @@
 import { Button, Container, Table } from "react-bootstrap";
+import { excluirEntregador } from "../../../servicos/servicoEntregador";
 
 export default function TabelaEntregadores(props) {
 
@@ -8,22 +9,18 @@ export default function TabelaEntregadores(props) {
         props.setExibirTabela(false);
     }
 
-    function excluirEntregador(entregador){
+    function excluirEntregadorSelecionado(entregador){
         if(window.confirm("Deseja realmente excluir o entregador " + entregador.descricao)){
-            //abordagem utilizando a sintaxe permitida da linguagem
-            props.setListaDeEntregadores(props.listaDeEntregadores.filter(
+            excluirEntregador(entregador).then((resposta)=>{
+                if(resposta.status)
+                    props.setListaDeEntregadores(props.listaDeEntregadores.filter(
                 (item)=>{
-                            return item.codigo !== entregador.codigo     
-                        }));
-
-            //abordagem elementar            
-            /*let novaLista= []
-            for (let i=0; i < props.listaDeEntregadores.length; i++){
-                if (props.listaDeEntregadores[i].codigo != entregador.codigo){
-                    novaLista.push(props.listaDeEntregadores[i])
+                    return item.codigo !== entregador.codigo 
+                }));
+                else{
+                    window.alert("Não foi possivel excluir o entregador: "+resposta.mensagem);
                 }
-            }
-            props.setListaDeEntregadores(novaLista);*/
+            })
         }
     }
 
@@ -62,7 +59,7 @@ export default function TabelaEntregadores(props) {
                                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                                                 </svg>
                                             </Button> <Button onClick={ ()=> {
-                                                excluirEntregador(entregador);
+                                                excluirEntregadorSelecionado(entregador);
                                             }} variant="danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
