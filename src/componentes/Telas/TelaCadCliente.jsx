@@ -21,6 +21,7 @@ export default function TelaCadastroCliente(props) {
     return (
         <div>
             <Pagina>
+<<<<<<< HEAD
                 |<Alert className="mt-02 mb-02 success text-center" variant="success">
                     <h2>
                         Cadastro de Cliente
@@ -43,6 +44,9 @@ export default function TelaCadastroCliente(props) {
 
                                          />
                 }
+=======
+                <FormCadCliente/>
+>>>>>>> b7ec294b648b620dfc0cdc2f2088930cedbe2ded
             </Pagina>
         </div>
     );
